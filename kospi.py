@@ -11,8 +11,13 @@ from datetime import datetime as dt
 from dateutil.relativedelta import relativedelta as rtd
 import matplotlib.pyplot as plt
 import time
-f = open("kospi200_ticker.txt", "r")
-ticker = [x.strip('\n') for x in f]
+import urllib
+url = "https://raw.githubusercontent.com/SteveHan1231/SNU/Financial-Mathematics/kospi200_ticker.txt"
+file = urllib.request.urlopen(url)
+ticker = []
+for line in file:
+  ticker.append(line.decode("utf-8").strip('\r\n'))
+
 today = dt.today()
 begin = today-rtd(years=1)
 
